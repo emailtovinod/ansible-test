@@ -1,0 +1,8 @@
+---
+- name: Deploy three tier App
+  hosts: all
+  become: true
+  roles: 
+      - appinstall
+      - appconfig
+      - dbinstall

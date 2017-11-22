@@ -1,0 +1,15 @@
+---
+# handlers file for /root/good-playbook/roles/app1
+- name: restart webapps
+  service: 
+    name: "{{ item }}"
+    enabled: true
+    state: started
+  with_items: "{{ webapps }}"
+
+- name: restart mwapps
+  service: 
+    name: "{{ item }}"
+    enabled: true
+    state: started
+  with_items: "{{ mwapps }}"

@@ -1,0 +1,20 @@
+---
+# vars file for /root/good-playbook/roles/app1
+webapps:
+   - 'httpd'
+   - 'haproxy'
+
+mwapps:
+   - 'tomcat'
+   - 'httpd'
+
+webservices: 
+     - restart webapps
+
+mwservices: 
+     - restart mwapps
+
+GUID: 3321 
+
+rootdir: /usr/share/tomcat/webapps/ROOT
+indexdir: /usr/share/tomcat/webapps/ansible

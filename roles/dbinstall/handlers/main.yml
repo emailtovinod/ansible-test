@@ -1,0 +1,13 @@
+---
+# handlers file for /root/good-playbook/roles/app1
+- name: initialize the DB
+  shell: 'postgresql-10-setup initdb'
+  args: 
+   chdir: "{{ dbdir }}"
+
+- name: start db
+  service: 
+    name: "{{ item }}"
+    enabled: true
+    state: restarted
+  with_items: "{{ dbservice }}"

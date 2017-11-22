@@ -1,0 +1,27 @@
+---
+# tasks file for /root/good-playbook/roles/app1
+- name: enable repo
+  copy: 
+    src: open_three-tier-app.repo 
+    dest: /etc/yum.repos.d/open_three-tier-app.repo
+    mode: 0644
+  tags: repo
+
+- name: Install the WEBAPP tier
+  yum: 
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ webapps}}"
+  when: "'frontend' in inventory_hostname"
+  notify: start webapps
+  tags: lb
+
+- name: Install the MWAPP tier
+  package:
+    name: "{{ item }}"
+    state: latest
+    disable_gpg_check: yes
+  with_items: "{{ mwapps }}"
+  when: "inventory_hostname in groups['apps']|default([])"
+  notify: start mwapps 
+  tags: app                

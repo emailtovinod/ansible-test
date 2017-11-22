@@ -1,0 +1,9 @@
+---
+# vars file for /root/good-playbook/roles/app1
+webapps:
+        - 'httpd'
+        - 'haproxy'
+
+mwapps:
+       - 'tomcat'
+       - 'httpd'
